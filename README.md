@@ -1,4 +1,4 @@
-# azure-video-manager
+# Video Indexer
 
 This is a sample of application of how to use the Azure Video Indexer and uplad large videos in chunks and store these videos in 
 Azure Blob.
@@ -30,4 +30,22 @@ This is the complete XML entry:
     </security>
 ```
 
+| Field         | Meaning               | 
+| ------------- |:---------------------:|
+| accoundId | The Subscription Id | 
+| videoSub | The Video Subscription Key |
+| searchKey | The Azure Search Key | 
+| blobKey | The Azure Storage Key - Block Blob| 
 
+To run this in test create a file keys.json
+
+
+
+```json
+{
+    "accountId": "01284b6a-...",
+    "videoSub": "ae8037e...",
+    "searchKey": "60C34...",
+    "blobKey": "Wei8fnyFQiU6Mj..."
+}
+```
