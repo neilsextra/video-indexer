@@ -1,0 +1,12 @@
+{
+    "blobContainer": "videos-blobs",
+    "imageContainer": "thumbnails-blobs",
+    "blobTable": "amvideos",
+    "blobPart": "videos",
+    "blobService": "tsostorage01",
+    "vindexerLocation": "eastasia",
+    "defaultFolder": "videos",
+    "blobUri": "https://tsostorage01.blob.core.windows.net",
+    "searchUrl": "https://tso-index.search.windows.net",
+    "searchIndex": "video-index"
+}

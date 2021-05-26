@@ -1,0 +1,8 @@
+{   
+    "name" : "video-index",
+    "fields" : [
+       {"name": "key", "type": "Edm.String", "key": "true", "searchable": "false", "sortable": "false", "facetable": "false"},
+       {"name": "terms", "type": "Collection(Edm.String)"}
+    ]
+
+}

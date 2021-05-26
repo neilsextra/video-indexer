@@ -1,0 +1,14 @@
+block content
+  div#uploadWait(style="display:none; z-index:10")
+    div(style="position:fixed; left:50%; top:50%; margin-left:-50px; margin-top:-100px;")
+      div#uploadProgress(class="c100 p0 big blue")
+        span#percentage 0%
+        div.slice
+          div.bar
+          div.fill 
+
+  div#waitDialog(class="modal")
+    div(style="position:fixed; text-align: center; top:50%; left:50%; margin-left:0px; margin-top:-100px;")
+      div.loader
+    div#waitMessage(style="position:absolute; top:60%; color:rgba(255,255,255, 1.0); text-align: center; width:100%;")
+  

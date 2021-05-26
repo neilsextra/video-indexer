@@ -1,0 +1,79 @@
+extends layout
+
+block content
+  div.main(style="width: 12%; height:12%; overflow:hidden;")
+    div(style="position: absolute; overflow:hidden; top:0px; bottom:0px; left:0px; right:0px; background-color:black;")
+      img(src="/icons/microsoft.png" style="position:absolute; z-index: 3; top:-2px; left:8px; width:350x; height:75px; margin:4px; opacity:1.0" alt="App")
+      div#toolbar
+        div.layout 
+          div(style='position:absolute; top:-14px; left:310px; font-weigth:bold; font-size:22px; color:rgba(255,255,255,0.4)')
+            h1 : Video Indexer
+          div(style='position:absolute; top:-18px; right:10px')
+            input#criteria(name="criteria" style="vertical-align: top; margin-left:102px; margin-top:6px; margin-right:4px; height: 24px; width: 500px;" placeholder="Search Videos...")
+            button.button(id="search" style="margin-left:0px; margin-top:2px; ")
+              img(src="/icons/magnifier.svg" style="padding-top:9px; width:17px; height:17px; text-align:center;" alt="Search")
+            button.button(id="refresh")
+              img(src="/icons/refresh-button.svg" style="padding-top:9px; width:17px; height:17px; text-align:center;" alt="Refresh")
+      div(style='position:absolute; top:80px; left:10px; right:10px; bottom:260px; border:3px solid #FFFFFF; overflow:none; background-color:rgba(255, 255, 255, 0.3);')
+        div#playerFrame(style="position:absolute; width:100%; height:100%;")
+          div#placeHolder(style="width:100%; height:200px; margin:auto;")
+            img#picture(src="/icons/video-player.svg" style="width:540px; height:328px; text-align:center;  position: absolute; top: 45%; left:50%; margin-left:-265px; margin-top:-123px; opacity: 0.2;")
+          div#player(style='position:absolute; width:100%; top:20px; left:50px; bottom:10px; padding-top:10px; display:none; z-index: 2; ')
+            div(style='margin:auto; position:absolute; top:10px; bottom:20px; right:700px; left:-10px;')
+              div#videoContainer
+                video#vid1(class="video-js" style="position:absolute; width:100%; height:100%; margin-left: auto; margin-right: auto;")
+            div#breakdown(style="position:absolute; top:10px; right:80px; width:580px; bottom:20px; border:3px solid #FFFFFF; background-color: rgba(255,255,255,0.5 ); padding-top:10px; padding-bottom:10px; padding-left:10px; padding-right:10px;")
+              div.tab#tab
+                button.tablinks#tab1(onclick="showTab(event, 'detailsFrame', 'tab1')" value="Details") Details
+                button.tablinks#tab2(onclick="showTab(event, 'transcriptFrame', 'tab2')" value="Transcript") Transcript
+                button.tablinks#tab3(onclick="showTab(event, 'ocrFrame', 'tab3')" value="OCR") OCR
+                button.tablinks#tab4(onclick="showTab(event, 'keywordsFrame', 'tab4')" value="Keywords") Keywords
+                button.tablinks#tab5(onclick="showTab(event, 'sentimentsFrames', 'tab5')" value="Sentiments") Sentiment
+                button.tablinks#tab6(onclick="showTab(event, 'imagesFrame', 'tab6')" value="Images") Images
+              div.tabcontent#detailsFrame(style="left:10px; right:10px; top:60px; bottom:10px; overflow:auto; position:absolute; background-color:rgba(255,255,255,0.4);")
+                div#details(style="position:absolute; left:0px; right:0px; top:0px; bottom:0px;")
+              div.tabcontent#transcriptFrame(style="left:10px; right:10px; top:60px; bottom:10px; overflow:auto; position:absolute; background-color:rgba(255,255,255,0.4);")
+                div#transcript(style="position:absolute; left:0px; right:0px; top:0px; bottom:0px;")
+              div.tabcontent#ocrFrame(style="left:10px; right:10px; top:60px; bottom:10px; overflow:auto; position:absolute; background-color:rgba(255,255,255,0.4);")
+                div#ocr(style="position:absolute; left:0px; right:0px; top:0px; bottom:0px;")
+              div.tabcontent#keywordsFrame(style="left:10px; right:10px; top:60px; bottom:10px; overflow:auto; position:absolute; background-color:rgba(255,255,255,0.4);")
+                div#keywords(style="position:absolute; left:0px; right:0px; top:0px; bottom:0px;")
+                  canvas#keywordsCanvas(width='555' height='500' style="position:absolute; left:0px; right:0px; top:0px; bottom:0px;")
+              div.tabcontent#sentimentsFrames(style="left:10px; right:10px; top:60px; bottom:10px; overflow:auto; position:absolute; background-color:rgba(255,255,255,0.4);")
+                div#sentimentContainer(style="position:absolute; left:20px; width:300px; height:300px; top:10px;")
+                  canvas#sentimentsCanvas(width='200' height='200' style="position:absolute; left:0px; right:0px; top:0px; bottom:0px; margin-left:auto; margin-right:auto;")
+                div#sentiments(style="position:absolute; right:10px; top:40px;")
+              div.tabcontent#imagesFrame(style="left:10px; right:10px; top:60px; bottom:10px; overflow:auto; position:absolute; background-color:rgba(255,255,255,0.4);")
+                div#images(style="position:absolute; left:0px; right:0px; top:0px; bottom:0px;")
+ 
+              div#nodetails(style="left:10px; right:10px; top:10px; bottom:10px; overflow:auto; position:absolute; background-color:rgba(255,255,255,0.4);")
+                canvas#progressCanvas(width='300' height='300' style="position:absolute; left:0px; top:0px; width:100%; height:320px; margin-left:auto; margin-right:auto;")
+                div#progressMessage(style="position:absolute; left:0px; right:0px; bottom:20px; text-align:center; margin-left:auto; margin-right:auto;")
+      
+      div.border(style="position:absolute; overflow:auto; top:52px; bottom:0px; left: 0px; right: 0px; ")
+        div(style="position:absolute; left:10px; right:0px; bottom:10px;")
+          div(style='position:absolute; left:0px; bottom:8px')
+            div#droparea(style="left:10px; width:210px; height:230px;")
+              div#dropareainner
+                p
+                p
+                picture
+                img(src='/icons/download.svg' style='width:78px; height:78px') 
+                p
+                p#dropfiletext Drop file (mp4) here
+                p or
+                p
+                  input.uploadbtn#uploadbtn(type='button' value="Select File")  
+              input#upload(type='file' accept='video/images/*')
+          div#navigator(style='position:absolute; left:220px; bottom:6px; height:216px; right:8px; margin:2px; border:3px solid #FFFFFF; padding:5px; background-color:rgba(255, 255, 255, 0.3);')
+            div.swiper-container#swiper-container(style='right:0px; padding-bottom:40px;')
+              div.swiper-wrapper#swiper-wrapper(style='height:180px; width:150px;')
+              div.swiper-pagination(style="position:absolute; bottom:5px;")
+
+      include ./wait.pug
+  
+  script(src="/modules/jquery/dist/jquery.min.js" )
+  script(src='/modules/video.js/dist/video.min.js') 
+  script(src="/modules/swiper/js/swiper.min.js" )
+  script(src="/modules/chart.js/dist/Chart.js")   
+  script(src="/javascripts/main.js")
