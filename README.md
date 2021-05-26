@@ -30,6 +30,8 @@ This is the complete XML entry:
     </security>
 ```
 
+To test the service
+
 | Field         | Meaning               | 
 | ------------- |:---------------------:|
 | accoundId | The Subscription Id | 
@@ -37,9 +39,7 @@ This is the complete XML entry:
 | searchKey | The Azure Search Key | 
 | blobKey | The Azure Storage Key - Block Blob| 
 
-To run this in test create a file keys.json
-
-
+An example file - keys.json
 
 ```json
 {
