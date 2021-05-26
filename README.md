@@ -3,9 +3,9 @@
 This is a sample of application of how to use the Azure Video Indexer and uplad large videos in chunks and store these videos in 
 Azure Blob.
 
-Essentially, uploads are split in 10K chunks (which can be changed if need be) and stored as Block Blob in Azure Storage.  This is then sent to
+Essentially, uploads and splits it in 10K chunks (which can be changed if need be) and stored in an Azure Block Blob Storage.  This is then sent to
 to the Azure Video Indexer (version 2) for analysis and processing.  The progress is then monitored though a timer which examines the progress 
-evert 30 seconds.  Once 100% complete, stores both the 'breakdown' and thumbnails associated with the video in a Azure Blob Container. All metadata is 
+every 30 seconds.  Once 100% complete, stores both the 'breakdown' and thumbnails associated with the video in a Azure Blob Container. All metadata is 
 store within an Azure Table.
  
 # considerations
